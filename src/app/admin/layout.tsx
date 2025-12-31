@@ -36,13 +36,23 @@ export default function AdminLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+
+  // Check if on login page FIRST - before any other logic
+  const isLoginPage = pathname?.includes("/admin/login");
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!isLoginPage); // Don't show loading on login page
   const [userEmail, setUserEmail] = useState("");
 
   // Check authentication on mount
   useEffect(() => {
+    // Skip auth check for login page
+    if (isLoginPage) {
+      setIsLoading(false);
+      return;
+    }
+
     const checkAuth = () => {
       const loggedIn = localStorage.getItem("adminLoggedIn") === "true";
       const email = localStorage.getItem("adminEmail") || "";
@@ -50,14 +60,14 @@ export default function AdminLayout({
       setUserEmail(email);
       setIsLoading(false);
 
-      // Redirect to login if not authenticated and not on login page
-      if (!loggedIn && pathname !== "/admin/login" && pathname !== "/admin/login/") {
+      // Redirect to login if not authenticated
+      if (!loggedIn) {
         router.push("/admin/login");
       }
     };
 
     checkAuth();
-  }, [pathname, router]);
+  }, [pathname, router, isLoginPage]);
 
   // Handle logout
   const handleLogout = () => {
@@ -66,8 +76,8 @@ export default function AdminLayout({
     router.push("/admin/login");
   };
 
-  // If on login page, render children without layout
-  if (pathname === "/admin/login" || pathname === "/admin/login/") {
+  // If on login page, render children without layout - check FIRST
+  if (isLoginPage) {
     return <>{children}</>;
   }
 
