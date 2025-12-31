@@ -1,0 +1,281 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   EPHRAIM CARE - DESIGN SYSTEM
+   WCAG 2.2 AA Compliant
+   ============================================ */
+
+:root {
+  /* Colors */
+  --background: #FFFFFF;
+  --foreground: #1A1A1A;
+  --surface: #F5F5F5;
+
+  /* Primary - Teal */
+  --primary: #2E7D6B;
+  --primary-hover: #1A5C4E;
+  --primary-light: #E6F4F2;
+
+  /* Secondary - Gold */
+  --secondary: #E8A54B;
+
+  /* Text */
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-muted: #737373;
+
+  /* Focus */
+  --focus-ring: #2E7D6B;
+  --focus-ring-offset: 2px;
+
+  /* Comfort Mode Overrides */
+  --comfort-bg: #FFFFFF;
+  --comfort-text: #000000;
+  --comfort-link: #0000EE;
+  --comfort-link-visited: #551A8B;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply text-neutral-900 bg-white antialiased;
+    font-size: 1rem;
+    line-height: 1.625;
+  }
+
+  /* Headings */
+  h1 {
+    @apply text-4xl md:text-5xl font-bold tracking-tight;
+    line-height: 1.2;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-bold;
+    line-height: 1.25;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-semibold;
+    line-height: 1.3;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-semibold;
+    line-height: 1.4;
+  }
+
+  /* Links - WCAG compliant with accessible link blue */
+  a {
+    @apply text-[#1565C0] underline-offset-4 hover:text-[#0D47A1] focus:outline-none focus:ring-2 focus:ring-[#1565C0] focus:ring-offset-2 rounded-sm;
+    text-decoration-thickness: 1px;
+  }
+
+  a:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  /* Focus styles - visible for all users */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  /* Remove focus ring for mouse users on non-interactive elements */
+  :focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+/* ============================================
+   COMPONENT UTILITIES
+   ============================================ */
+
+@layer components {
+  /* Container */
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section spacing */
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .section-sm {
+    @apply py-12 md:py-16;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-2xl border border-neutral-200 p-6 shadow-sm hover:shadow-md transition-shadow;
+  }
+
+  .card-interactive {
+    @apply card cursor-pointer hover:border-primary-300;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-primary-100 text-primary-800;
+  }
+
+  .badge-secondary {
+    @apply badge bg-secondary-100 text-secondary-700;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY UTILITIES
+   ============================================ */
+
+@layer utilities {
+  /* Screen reader only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Skip link */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary;
+  }
+
+  /* Touch target - minimum 44x44px */
+  .touch-target {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ============================================
+   COMFORT MODE
+   Larger fonts, higher contrast, simpler design
+   ============================================ */
+
+.comfort-mode {
+  /* Typography overrides */
+  font-family: 'Atkinson Hyperlegible', Arial, Verdana, sans-serif !important;
+  font-size: 120% !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.03em !important;
+
+  /* High contrast colors */
+  --background: #FFFFFF !important;
+  --foreground: #000000 !important;
+  --text-primary: #000000 !important;
+  --text-secondary: #333333 !important;
+  --primary: #005A4D !important;
+}
+
+.comfort-mode * {
+  font-family: inherit !important;
+}
+
+.comfort-mode a {
+  color: #0000EE !important;
+  text-decoration: underline !important;
+}
+
+.comfort-mode a:visited {
+  color: #551A8B !important;
+}
+
+.comfort-mode a:focus,
+.comfort-mode button:focus,
+.comfort-mode [tabindex]:focus {
+  outline: 3px solid #000000 !important;
+  outline-offset: 3px !important;
+}
+
+.comfort-mode .decorative-image {
+  display: none !important;
+}
+
+/* Hide animations in comfort mode */
+.comfort-mode *,
+.comfort-mode *::before,
+.comfort-mode *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  body {
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+  }
+
+  nav, footer, .no-print {
+    display: none !important;
+  }
+
+  a {
+    text-decoration: underline;
+    color: #000;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+}
