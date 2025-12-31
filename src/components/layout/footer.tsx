@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { footerNavigation, contactInfo } from "@/data/navigation";
+import { Phone, Mail, MapPin, Clock, Building2 } from "lucide-react";
+import { footerNavigation, contactInfo, companyInfo } from "@/data/navigation";
 
 export function Footer() {
   return (
@@ -21,10 +21,15 @@ export function Footer() {
             </Link>
 
             {/* NDIS Badge */}
-            <div className="mt-4 inline-flex items-center px-3 py-1.5 rounded-full bg-primary/20 border border-primary/30">
-              <span className="text-sm font-medium text-primary-300">
-                Registered NDIS Provider
-              </span>
+            <div className="mt-4 space-y-2">
+              <div className="inline-flex items-center px-3 py-1.5 rounded-full bg-primary/20 border border-primary/30">
+                <span className="text-sm font-medium text-primary-300">
+                  Registered NDIS Provider
+                </span>
+              </div>
+              <p className="text-xs text-neutral-400">
+                NDIS Registration: {companyInfo.ndisRegistrationId}
+              </p>
             </div>
 
             <div className="mt-6 space-y-3 text-neutral-300">
@@ -42,13 +47,21 @@ export function Footer() {
                 <Mail className="h-5 w-5 text-primary-400" aria-hidden="true" />
                 <span>{contactInfo.email}</span>
               </a>
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-primary-400" aria-hidden="true" />
-                <span>{contactInfo.location}</span>
+              <div className="flex items-start space-x-3">
+                <MapPin className="h-5 w-5 text-primary-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                <div>
+                  <span>{contactInfo.address}</span>
+                  <br />
+                  <span>{contactInfo.suburb}</span>
+                </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Clock className="h-5 w-5 text-primary-400" aria-hidden="true" />
                 <span>{contactInfo.hours}</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Building2 className="h-5 w-5 text-primary-400" aria-hidden="true" />
+                <span>ABN: {companyInfo.abn}</span>
               </div>
             </div>
           </div>

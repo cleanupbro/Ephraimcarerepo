@@ -5,8 +5,8 @@ import {
   UsersRound,
   Lightbulb,
   Home,
-  Calculator,
-  Brain,
+  Handshake,
+  Building2,
   type LucideIcon,
 } from "lucide-react";
 
@@ -15,11 +15,14 @@ export interface Service {
   name: string;
   shortName: string;
   slug: string;
+  ndisCode: string;
   description: string;
   longDescription: string;
   icon: LucideIcon;
   features: string[];
   color: string;
+  image: string;
+  featured?: boolean;
 }
 
 export const services: Service[] = [
@@ -28,6 +31,7 @@ export const services: Service[] = [
     name: "Personal Care",
     shortName: "Personal",
     slug: "personal-care",
+    ndisCode: "0107",
     description:
       "Supporting your daily personal needs with dignity and respect.",
     longDescription:
@@ -42,36 +46,18 @@ export const services: Service[] = [
       "Meal preparation and feeding assistance",
     ],
     color: "primary",
+    image: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&q=80",
   },
   {
-    id: "community-care",
-    name: "Community Care",
-    shortName: "Community",
-    slug: "community-care",
-    description:
-      "Building connections and supporting your social inclusion goals.",
-    longDescription:
-      "Community Care focuses on helping you stay connected with your community. We support you to participate in social activities, visit friends and family, and engage with local groups and events that matter to you.",
-    icon: Users,
-    features: [
-      "Social outings and activities",
-      "Visiting friends and family",
-      "Attending community events",
-      "Shopping assistance",
-      "Recreational activities",
-      "Building social connections",
-    ],
-    color: "secondary",
-  },
-  {
-    id: "travel-care",
-    name: "Travel Care",
-    shortName: "Travel",
-    slug: "travel-care",
+    id: "travel-transport",
+    name: "Travel & Transport",
+    shortName: "Transport",
+    slug: "travel-transport",
+    ndisCode: "0108",
     description:
       "Safe and reliable transport assistance for your journeys.",
     longDescription:
-      "Our Travel Care service provides safe, reliable transport assistance to help you get where you need to go. From medical appointments to social outings, we offer different levels of support based on your needs.",
+      "Our Travel & Transport service provides safe, reliable transport assistance to help you get where you need to go. From medical appointments to social outings, we offer different levels of support based on your needs.",
     icon: Car,
     features: [
       "Level 1: Standard transport assistance",
@@ -81,37 +67,66 @@ export const services: Service[] = [
       "Social activity transport",
       "Shopping and errands",
     ],
-    color: "primary",
+    color: "secondary",
+    image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&q=80",
   },
   {
-    id: "group-activities",
-    name: "Group Activities",
-    shortName: "Groups",
-    slug: "group-activities",
+    id: "supported-independent-living",
+    name: "Supported Independent Living (SIL)",
+    shortName: "SIL",
+    slug: "supported-independent-living",
+    ndisCode: "0115",
     description:
-      "Engaging centre-based programs for social connection and skill building.",
+      "24/7 support to live independently in your own home or shared accommodation.",
     longDescription:
-      "Our Group Activities program offers centre-based activities designed to help you build skills, make friends, and have fun. From art classes to fitness programs, there is something for everyone.",
-    icon: UsersRound,
+      "Supported Independent Living (SIL) provides around-the-clock support to help you live as independently as possible. Whether in your own home or shared accommodation, our dedicated team ensures you have the assistance you need while maximizing your independence and quality of life.",
+    icon: Building2,
     features: [
-      "Art and craft sessions",
-      "Fitness and movement classes",
-      "Music and creative programs",
-      "Cooking and life skills groups",
-      "Social clubs and games",
-      "Educational workshops",
+      "24/7 on-site support available",
+      "Assistance with daily living tasks",
+      "Shared or individual accommodation options",
+      "Skill building for independence",
+      "Community access and social support",
+      "Health and wellbeing monitoring",
+      "Meal planning and preparation",
+      "Household management support",
+    ],
+    color: "primary",
+    image: "https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?w=800&q=80",
+    featured: true,
+  },
+  {
+    id: "community-participation",
+    name: "Community Participation",
+    shortName: "Community",
+    slug: "community-participation",
+    ndisCode: "0116",
+    description:
+      "Innovative programs to help you connect and participate in your community.",
+    longDescription:
+      "Our Innovative Community Participation programs are designed to help you engage meaningfully with your community. We create tailored opportunities for social connection, skill development, and community involvement.",
+    icon: Users,
+    features: [
+      "Social outings and activities",
+      "Community event participation",
+      "Building meaningful connections",
+      "Recreational activities",
+      "Volunteer opportunities",
+      "Interest-based group programs",
     ],
     color: "secondary",
+    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80",
   },
   {
     id: "life-skills",
-    name: "Life Skills",
+    name: "Life Skills Development",
     shortName: "Life Skills",
     slug: "life-skills",
+    ndisCode: "0117",
     description:
       "Building independence through practical skill development.",
     longDescription:
-      "Life Skills training helps you develop the practical abilities you need for greater independence. Our patient support workers work with you at your own pace to build confidence in everyday tasks.",
+      "Life Skills Development helps you gain the practical abilities you need for greater independence. Our patient support workers work with you at your own pace to build confidence in everyday tasks.",
     icon: Lightbulb,
     features: [
       "Financial literacy and budgeting",
@@ -122,12 +137,14 @@ export const services: Service[] = [
       "Self-advocacy training",
     ],
     color: "primary",
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80",
   },
   {
     id: "household-tasks",
-    name: "Daily & Household Tasks",
+    name: "Household Tasks",
     shortName: "Household",
     slug: "household-tasks",
+    ndisCode: "0120",
     description:
       "Practical support to maintain a comfortable and safe home.",
     longDescription:
@@ -142,46 +159,51 @@ export const services: Service[] = [
       "Home organisation",
     ],
     color: "secondary",
+    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80",
   },
   {
-    id: "plan-management",
-    name: "Plan Management",
-    shortName: "Plan Mgmt",
-    slug: "plan-management",
+    id: "social-participation",
+    name: "Social & Civic Participation",
+    shortName: "Social",
+    slug: "social-participation",
+    ndisCode: "0125",
     description:
-      "Expert financial administration for your NDIS plan.",
+      "Support to engage in social activities and community life.",
     longDescription:
-      "Our Plan Management service takes the stress out of managing your NDIS funding. We handle invoices, payments, and financial tracking so you can focus on achieving your goals.",
-    icon: Calculator,
+      "Our Social & Civic Participation service supports you to actively engage in community life. From attending local events to pursuing hobbies, we help you build connections and participate in activities that matter to you.",
+    icon: Handshake,
     features: [
-      "Invoice processing and payment",
-      "Budget tracking and reporting",
-      "Provider payment management",
-      "Claiming from NDIS portal",
-      "Monthly financial statements",
-      "Funding utilisation advice",
+      "Attending community events",
+      "Joining clubs and groups",
+      "Social skill development",
+      "Friendship building support",
+      "Civic participation activities",
+      "Cultural and recreational outings",
     ],
     color: "primary",
+    image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=800&q=80",
   },
   {
-    id: "psychosocial-recovery",
-    name: "Psychosocial Recovery",
-    shortName: "Recovery",
-    slug: "psychosocial-recovery",
+    id: "group-activities",
+    name: "Group & Centre Activities",
+    shortName: "Groups",
+    slug: "group-activities",
+    ndisCode: "0136",
     description:
-      "Compassionate mental health support for your recovery journey.",
+      "Engaging centre-based programs for social connection and skill building.",
     longDescription:
-      "Our Psychosocial Recovery service provides specialist support for people living with mental health conditions. We work with you to build resilience, develop coping strategies, and work towards your recovery goals.",
-    icon: Brain,
+      "Our Group & Centre Activities program offers centre-based activities designed to help you build skills, make friends, and have fun. From art classes to fitness programs, there is something for everyone.",
+    icon: UsersRound,
     features: [
-      "One-on-one recovery coaching",
-      "Emotional support and counselling",
-      "Coping strategies development",
-      "Social reconnection support",
-      "Routine building assistance",
-      "Crisis support planning",
+      "Art and craft sessions",
+      "Fitness and movement classes",
+      "Music and creative programs",
+      "Cooking and life skills groups",
+      "Social clubs and games",
+      "Educational workshops",
     ],
     color: "secondary",
+    image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&q=80",
   },
 ];
 
@@ -193,4 +215,8 @@ export const getRelatedServices = (currentSlug: string, count: number = 3): Serv
   return services
     .filter((service) => service.slug !== currentSlug)
     .slice(0, count);
+};
+
+export const getFeaturedServices = (): Service[] => {
+  return services.filter((service) => service.featured);
 };
